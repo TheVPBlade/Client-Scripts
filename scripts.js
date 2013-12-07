@@ -389,7 +389,7 @@ poScript = ({
 			return;
 		}
 		if (cmd == "scriptinfo") {
-			client.printHtml("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='http://pastebin.com/raw.php?i=0Dx1SDwt'>http://pastebin.com/raw.php?i=0Dx1SDwt</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2013</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>",0);
+			client.printHtml("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2013</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>",0);
 			return;
 		}
 		if (cmd == "pokedex") {
@@ -423,7 +423,7 @@ poScript = ({
 		}
 		if (cmd == "updatescript") {
 			try {
-				sys.webCall("http://pastebin.com/raw.php?i=0Dx1SDwt",
+				sys.webCall("https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js",
 
 				function (resp) {
 					sys.changeScript(resp, true);
