@@ -417,7 +417,7 @@ poScript = ({
 					client.printHtml("<timestamp/><b>Stats:</b> Not available<br><br><b><font color='blue'size='4'>" + border + "</font><br>");
 				} else {
 					client.printHtml("<timestamp/><b>PokeDex Number:</b> " + poke2 % 65536 + "<br><timestamp/><b> Type(s): <img src='Themes/Classic/types/type" + type1 + ".png'/> / <img src='Themes/Classic/types/type" + type2 + ".png'/></b><br><timestamp/><b>Abilities:</b> " + ability1 + (sys.pokemon(poke).substr(0, 5) === "Mega " ? "" : (ability2 === "(No Ability)" ? "" : ", " + ability2) + (ability3 === "(No Ability)" ? "" : ", " + ability3 + " (Hidden Ability)")));
-					client.printHtml("<timestamp/><b>Stats:</b> Not available<br><br><b><font color='blue'size='4'>" + border + "</font><br>");
+					client.printHtml("<timestamp/><b>Base Stats:</b> "+sys.baseStats(poke2, '0','6')+" <b>HP</b>, "+sys.baseStats(poke2, '1','6')+" <b>ATK</b>, "+sys.baseStats(poke2, '2','6')+" <b>DEF</b>, "+sys.baseStats(poke2, '3','6')+" <b>SATK</b>, "+sys.baseStats(poke2, '4','6')+" <b>SDEF</b>, "+sys.baseStats(poke2, '5','6')+" <b>SPD</b><br><br><b><font color='blue'size='4'>" + border + "</font><br>");
 					return;
 				}
 			}
