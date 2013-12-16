@@ -377,6 +377,7 @@ poScript = ({
 			Links[32] = ""+cData+" you need a life because your parents didn't slave away in the Wal-Mart cotton fields just for you to live on welfare and collect foodstamps.";
 			Links[33] = "hey "+cData.toLowerCase()+" stop acting cool because you got no dick";
 			Links[34] = ""+cData.toLowerCase()+" is tht wat u do all day? make fun of po users? i bet uve never gotten laid nd ive fucked many bitchs";
+			Links[35] = ""+cData+" Iam no dumed ass cuz that mean I a Lil bitch ass fack ass trainer suck on my pokeballs bitch";
 			var i = Math.floor(Links.length * Math.random())
 			client.network().sendChanMessage(channel, Links[i]);
 			return;
