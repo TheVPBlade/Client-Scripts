@@ -378,6 +378,7 @@ poScript = ({
 			Links[33] = "hey "+cData.toLowerCase()+" stop acting cool because you got no dick";
 			Links[34] = ""+cData.toLowerCase()+" is tht wat u do all day? make fun of po users? i bet uve never gotten laid nd ive fucked many bitchs";
 			Links[35] = ""+cData+" Iam no dumed ass cuz that mean I a Lil bitch ass fack ass trainer suck on my pokeballs bitch";
+			Links[36] = ""+cData.toLowerCase()+" your the faggot who protects barrack obamashit who by the way is a goddamn terrerrest";
 			var i = Math.floor(Links.length * Math.random())
 			client.network().sendChanMessage(channel, Links[i]);
 			return;
