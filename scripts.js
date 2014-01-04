@@ -381,6 +381,7 @@ poScript = ({
 			Links[36] = ""+cData.toLowerCase()+" your the faggot who protects barrack obamashit who by the way is a goddamn terrerrest";
 			Links[37] = ""+cData.toUpperCase()+" FUK U NIGGA STOP SO MUTHA FUKN RACIST MAN JUST CUZ IM BLACK DOESNT MEAN U CAN BE A FUKN CUNT";
 			Links[38] = ""+cData.toLowerCase()+" just shut the fuck up your just an annoying lil black bitch that dont phase shit so why dont u get yo im black and im bad ass the fuck outa hers";
+			Links[39] = "actually dumbfuck "+cData.toLowerCase()+" it nevee said recover it said lefovers and actually noobs play fair unlike you your an epic and so was your moms abortion";
 			var i = Math.floor(Links.length * Math.random())
 			client.network().sendChanMessage(channel, Links[i]);
 			return;
