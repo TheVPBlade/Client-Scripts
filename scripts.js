@@ -65,16 +65,16 @@ if (typeof (Insults) !== "object") {
     global.intellisult = intellisult;
 }());
 
-function init() {
-    if (sys.getVal("recmsg") === undefined) {
-        sys.saveVal("recmsg", "off");
-    }
-}
-
 poScript = ({
+    init: function() {
+        if (sys.getVal("recmsg") === undefined) {
+            sys.saveVal("recmsg", "off");
+        }
+    },
+    
     clientStartUp: function () {
         client.printHtml("<timestamp/> You are using <b><font color=navy>Blade's</font> Client<font color=red> Scripts!</b></font><br/><timestamp/> Type <b>~cmds</b> to view the <b>commands</b>!");
-        init();
+        script.init();
         script.getInsults();
     },
 
