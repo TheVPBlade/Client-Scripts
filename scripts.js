@@ -99,17 +99,7 @@ function init() {
 
 init();
 
-function awayFunction() {
-    if (sys.getVal("idle") === "true") {
-        print("You are now Auto-Idling!");
-        client.goAway(true);
-    } else {
-        client.printHtml("<timestamp/> To give yourself <b>Auto-Idle</b>, type <b>~idle on</b>");
-        client.goAway(false);
-    }
-}
 client.network().playerLogin.connect(function () { //only call when the user has logged in to prevent any crashes
-    awayFunction();
     init();
 });
 poScript = ({
@@ -261,7 +251,7 @@ poScript = ({
                 cmd = msg.substr(1).toLowerCase();
             }
             if (cmd == "cmds") {
-                client.printHtml("<br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br><br><font color='red'size='5'><b><u>Commands:</font></b></u><br><br><ul><li><b>~etext <font color=red>[on/off]</font> -- to toggle enriched text <font color=red>on</font> or <font color=red> off</font></li><b><li>~greentext <font color=red>[on/off]</font> -- to toggle greentext <font color=red>on</font> or <font color=red>off</font></li><b><li>~idle <font color=red>[on/off]</font> -- to toggle auto-idle <font color=red>on</font> or <font color=red>off</font></li><b><li>~id <font color=red>[player]</font> -- to retrieve the id of an online player</li><b><li>~eval <font color=red>[code]</font> -- to evaluate a client script code</li><b><li>~updatescript -- to load the script after an update</li><b><li>~pokedex <font color=red>[pokemon]</font> -- to view details about a <font color=red>pokemon</font> [Alternate formes do NOT work!!]</li><b><li>~reconnect -- to reconnect to a server if you've disconnected</li><b><li>~recmsg <font color=red>[on/off]</font> -- to toggle the reconnect message <font color=red>on</font> or <font color=red>off</font></li><b><li>~setrecmsg <font color=red>[message]</font> -- to set a reconnect message</li><b><li>~sprite <font color=red>[pokemon]:[generation]</font> -- to generate a Pokemon's sprite from a specific generation</li><b><li>~imp <font color=red>[new name]</font> -- to change your name</li><b><li>~scriptinfo -- to view information about the client scripts</li><b><li>~html <font color=red>[html code]</font> -- to test an HTML code, only you can see it</li><b><li>~insult <font color=red>[player]</font> -- to insult a player</li><b><li>~intellisult <font color=red>[player]</font> -- to insult a player with intelligent words</ul><br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br>");
+                client.printHtml("<br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br><br><font color='red'size='5'><b><u>Commands:</font></b></u><br><br><ul><li><b>~etext <font color=red>[on/off]</font> -- to toggle enriched text <font color=red>on</font> or <font color=red> off</font></li><b><li>~greentext <font color=red>[on/off]</font> -- to toggle greentext <font color=red>on</font> or <font color=red>off</font></li><b><li>~id <font color=red>[player]</font> -- to retrieve the id of an online player</li><b><li>~eval <font color=red>[code]</font> -- to evaluate a client script code</li><b><li>~updatescript -- to load the script after an update</li><b><li>~pokedex <font color=red>[pokemon]</font> -- to view details about a <font color=red>pokemon</font> [Alternate formes do NOT work!!]</li><b><li>~reconnect -- to reconnect to a server if you've disconnected</li><b><li>~recmsg <font color=red>[on/off]</font> -- to toggle the reconnect message <font color=red>on</font> or <font color=red>off</font></li><b><li>~setrecmsg <font color=red>[message]</font> -- to set a reconnect message</li><b><li>~sprite <font color=red>[pokemon]:[generation]</font> -- to generate a Pokemon's sprite from a specific generation</li><b><li>~imp <font color=red>[new name]</font> -- to change your name</li><b><li>~scriptinfo -- to view information about the client scripts</li><b><li>~html <font color=red>[html code]</font> -- to test an HTML code, only you can see it</li><b><li>~insult <font color=red>[player]</font> -- to insult a player</li><b><li>~intellisult <font color=red>[player]</font> -- to insult a player with intelligent words</ul><br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br>");
                 return;
             }
             if (cmd == "etext") {
@@ -294,22 +284,6 @@ poScript = ({
                     return;
                 }
                 script.bot("Please use on/off.");
-                return;
-            }
-            if (cmd == "idle") {
-                if (cData == "on") {
-                    client.goAway(true);
-                    sys.saveVal('idle', true);
-                    script.bot("You turned auto-idling on!");
-                    return;
-                }
-                if (cData == "off") {
-                    client.goAway(false);
-                    sys.saveVal('idle', false);
-                    script.bot("You turned auto-idling off!");
-                    return;
-                }
-                script.bot("Please use on/off");
                 return;
             }
             if (cmd == "id") {
