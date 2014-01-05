@@ -107,7 +107,6 @@ poScript = ({
     clientStartUp: function () {
         client.printHtml("<timestamp/> You are using <b><font color=navy>Blade's</font> Client<font color=red> Scripts!</b></font><br/><timestamp/> Type <b>~cmds</b> to view the <b>commands</b>!");
         init();
-        this.stepEvent();
     },
     bot: function (msg) {
         client.printHtml("<font color=blue><timestamp/><b> +Bot:</font></b> " + sys.htmlEscape(msg));
@@ -126,15 +125,7 @@ poScript = ({
     authEnd: function (string) {
         newstring = string.replace(/</g, "</");
         return newstring;
-    },
-    stepEvent: function () {
-        var id = client.ownId();
-        if (id === -1) {
-            sys.setTimer(function () {
-                script.stepEvent();
-            }, 1000, false);
-        }
-    },
+    }
     beforeChannelMessage: function (message, chan, html) {
         var pos = message.indexOf(': ');
         if (pos != -1) {
