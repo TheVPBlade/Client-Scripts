@@ -82,7 +82,7 @@ poScript = ({
         if (!chan) {
             chan = client.currentChannel();
         }
-        client.printChannelMessage("<font color=blue><timestamp/><b> +Bot:</font></b> " + sys.htmlEscape(msg), chan, true);
+        client.printChannelMessage("<font color=blue><timestamp/><b> ±Bot:</font></b> " + sys.htmlEscape(msg), chan, true);
         return;
     },
 
@@ -110,7 +110,7 @@ poScript = ({
             }
 
             if (cmd === "cmds") {
-                client.printHtml("<br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br><br><font color='red'size='5'><b><u>Commands:</font></b></u><br><br><ul><li><b><li>~id <font color=red>[player]</font> -- to retrieve the id of an online player</li><b><li>~eval <font color=red>[code]</font> -- to evaluate a client script code</li><b><li>~updatescript -- to load the script after an update</li><b><li>~pokedex <font color=red>[pokemon]</font> -- to view details about a <font color=red>pokemon</font> [Alternate formes do NOT work!!]</li><b><li>~reconnect -- to reconnect to a server if you've disconnected</li><b><li>~recmsg <font color=red>[on/off]</font> -- to toggle the reconnect message <font color=red>on</font> or <font color=red>off</font></li><b><li>~setrecmsg <font color=red>[message]</font> -- to set a reconnect message</li><b><li>~sprite <font color=red>[pokemon]:[generation]</font> -- to generate a Pokemon's sprite from a specific generation</li><b><li>~imp <font color=red>[new name]</font> -- to change your name</li><b><li>~scriptinfo -- to view information about the client scripts</li><b><li>~html <font color=red>[html code]</font> -- to test an HTML code, only you can see it</li><b><li>~insult <font color=red>[player]</font> -- to insult a player</li><b><li>~intellisult <font color=red>[player]</font> -- to insult a player with intelligent words</ul><br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br>");
+                client.printHtml("<br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br><h2>Commands</h2><i>Type one of the following into the channel's chat to use it:</i><ul><li><b>~id <font color=red>[player]</font></b> To retrieve the id of an online player.</li><li><b>~eval <font color=red>[code]</font></b> To evaluate a client script code.</li><li><b>~updatescript</b> To load the script after an update.</li><li><b>~pokedex <font color=red>[pokemon]</font></b> To view details about a Pokemon.</li><li><b>~reconnect</b> To reconnect to a server if you've disconnected.</li><li><b>~recmsg <font color=red>[on/off]</font></b> To toggle the reconnect message on or off.</li><li><b>~setrecmsg <font color=red>[message]</font></b> To set a reconnect message.</li><li><b>~sprite <font color=red>[pokemon]</b></font>:<font color=red><b>[generation]</font></b> To generate a Pokemon's sprite from a specific generation.</li><li><b>~imp <font color=red>[new name]</font></b> To change your name.</li><li><b>~scriptinfo</b> To view information about the client scripts.</li><li><b>~html <font color=red>[html code]</font></b> To test an HTML code, only you can see it.</li><li><b>~getinsults</b> To webcall the list of insults.</li><li><b>~insult <font color=red>[player]</font></b> To insult a player.</li><li><b>~intellisult <font color=red>[player]</font></b> To insult a player with intelligent words.</ul><br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br>");
                 return;
             }
 
@@ -186,7 +186,7 @@ poScript = ({
             }
 
             if (cmd === "insult") {
-                if (cData.length < 1) {
+                if (cData.length < 2) {
                     script.bot("Please specify a real name!");
                     return;
                 }
@@ -210,7 +210,7 @@ poScript = ({
             }
 
             if (cmd === "scriptinfo") {
-                client.printHtml("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2013</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>", 0);
+                client.printHtml("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2014</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>", 0);
                 return;
             }
 
@@ -222,7 +222,7 @@ poScript = ({
                 var ability1 = sys.ability(sys.pokeAbility(poke, 0)),
                     ability2 = sys.ability(sys.pokeAbility(poke, 1)),
                     ability3 = sys.ability(sys.pokeAbility(poke, 2));
-                var border = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+                var border = "»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»";
                 if (!cData) {
                     script.bot("Please specify a Pokémon!");
                     return;
@@ -242,15 +242,15 @@ poScript = ({
                         };
                         return baseStats[stats[stat]];
                     };
-                    client.printHtml("<br><b><font color='red'size='4'>" + border + "</font><br>");
+                    client.printHtml("<br><b><font color='red'size='4'>" + border + "</font></b><br>");
                     client.printHtml("<h2>" + cData + "</h2><br>");
                     client.printHtml("<img src='pokemon:" + poke + "&gen=6'/><img src='pokemon:" + poke + "&gen=6&back=true'/><img src='pokemon:" + poke + "&gen=6&shiny=true'/><img src='pokemon:" + poke + "&gen=6&shiny=true&back=true'/></b><br><br>");
                     if (type2 === 18) {
                         client.printHtml("<timestamp/><b>PokeDex Number:</b> " + poke2 % 65536 + "<br><timestamp/><b> Type(s): <img src='Themes/Classic/types/type" + type1 + ".png'/></b><br><timestamp/><b>Abilities:</b> " + ability1 + (sys.pokemon(poke).substr(0, 5) === "Mega " ? "" : (ability2 === "(No Ability)" ? "" : ", " + ability2) + (ability3 === "(No Ability)" ? "" : ", " + ability3 + " (Hidden Ability)")));
-                        client.printHtml("<timestamp/><b>Base Stats:</b> " + getStat('hp') + " <b>HP</b>, " + getStat('atk') + " <b>ATK</b>, " + getStat('def') + " <b>DEF</b>, " + getStat('satk') + " <b>SATK</b>, " + getStat('sdef') + " <b>SDEF</b>, " + getStat('spd') + " <b>SPD</b><br><br><b><font color='blue'size='4'>" + border + "</font><br>");
+                        client.printHtml("<timestamp/><b>Base Stats:</b> " + getStat('hp') + " <b>HP</b>, " + getStat('atk') + " <b>ATK</b>, " + getStat('def') + " <b>DEF</b>, " + getStat('satk') + " <b>SATK</b>, " + getStat('sdef') + " <b>SDEF</b>, " + getStat('spd') + " <b>SPD</b><br><br><b><font color='blue'size='4'>" + border + "</b></font><br>");
                     } else {
                         client.printHtml("<timestamp/><b>PokeDex Number:</b> " + poke2 % 65536 + "<br><timestamp/><b> Type(s): <img src='Themes/Classic/types/type" + type1 + ".png'/> / <img src='Themes/Classic/types/type" + type2 + ".png'/></b><br><timestamp/><b>Abilities:</b> " + ability1 + (sys.pokemon(poke).substr(0, 5) === "Mega " ? "" : (ability2 === "(No Ability)" ? "" : ", " + ability2) + (ability3 === "(No Ability)" ? "" : ", " + ability3 + " (Hidden Ability)")));
-                        client.printHtml("<timestamp/><b>Base Stats:</b> " + getStat('hp') + " <b>HP</b>, " + getStat('atk') + " <b>ATK</b>, " + getStat('def') + " <b>DEF</b>, " + getStat('satk') + " <b>SATK</b>, " + getStat('sdef') + " <b>SDEF</b>, " + getStat('spd') + " <b>SPD</b><br><br><b><font color='blue'size='4'>" + border + "</font><br>");
+                        client.printHtml("<timestamp/><b>Base Stats:</b> " + getStat('hp') + " <b>HP</b>, " + getStat('atk') + " <b>ATK</b>, " + getStat('def') + " <b>DEF</b>, " + getStat('satk') + " <b>SATK</b>, " + getStat('sdef') + " <b>SDEF</b>, " + getStat('spd') + " <b>SPD</b><br><br><b><font color='blue'size='4'>" + border + "</font></b><br>");
                     }
                 }
                 return;
