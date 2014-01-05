@@ -109,7 +109,7 @@ poScript = ({
         this.stepEvent();
     },
     bot: function (msg) {
-        client.printHtml("<font color=blue><timestamp/><b> +Bot:</font></b> " + msg);
+        client.printHtml("<font color=blue><timestamp/><b> +Bot:</font></b> " + sys.htmlEscape(msg));
         return;
     },
     channelLinks: function (string) {
@@ -134,17 +134,6 @@ poScript = ({
             }, 1000, false);
         }
     },
-    html_escape: function (text) {
-        var m = String(text);
-        if (m.length > 0) {
-            var amp = "&am" + "p;";
-            var lt = "&l" + "t;";
-            var gt = "&g" + "t;";
-            return m.replace(/&/g, amp).replace(/</g, lt).replace(/>/g, gt);
-        } else {
-            return "";
-        }
-    },
     beforeChannelMessage: function (message, chan, html) {
         var pos = message.indexOf(': ');
         if (pos != -1) {
@@ -153,7 +142,7 @@ poScript = ({
             }
             var id = client.id(message.substring(0, pos));
             var playname = message.substring(0, pos);
-            var playmessage = this.html_escape(message.substr(pos + 2));
+            var playmessage = sys.htmlEscape(message.substr(pos + 2));
             var msg = playmessage.split(' ');
             for (var x in msg) {
                 var msgnew, otherend;
@@ -346,7 +335,7 @@ poScript = ({
                 if (cData.length < 2) {
                     script.bot("That reconnect message is too small.");
                 } else {
-                    script.bot("Reconnect message set to: <b>" + cData);
+                    script.bot("Reconnect message set to: " + cData);
                     sys.saveVal("recmsgset", cData);
                 }
                 return;
