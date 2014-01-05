@@ -34,41 +34,41 @@ function intellisult(e) {
         u = t.F;
     var a, f, l, c, h, p, d;
     do {
-        a = n[Math.floor(Math.random() * n.length)]
+        a = n[Math.floor(Math.random() * n.length)];
     } while (a === intellisult.a);
     intellisult.a = a;
     do {
-        f = r[Math.floor(Math.random() * r.length)]
+        f = r[Math.floor(Math.random() * r.length)];
     } while (f === intellisult.a);
     intellisult.b = f;
     do {
-        l = i[Math.floor(Math.random() * i.length)]
+        l = i[Math.floor(Math.random() * i.length)];
     } while (l === intellisult.c);
     intellisult.c = l;
     do {
-        c = s[Math.floor(Math.random() * s.length)]
+        c = s[Math.floor(Math.random() * s.length)];
     } while (c === intellisult.d);
     intellisult.d = c;
     do {
-        h = o[Math.floor(Math.random() * o.length)]
+        h = o[Math.floor(Math.random() * o.length)];
     } while (h === intellisult.e);
     intellisult.e = h;
     do {
-        p = u[Math.floor(Math.random() * u.length)]
+        p = u[Math.floor(Math.random() * u.length)];
     } while (p === intellisult.f);
     intellisult.f = p;
     e = e || "";
     if (e.trim() !== "") {
-        d = e + " is " + a + " " + f + " " + l + " and a " + c + " " + h + " " + p + "."
+        d = e + " is " + a + " " + f + " " + l + " and a " + c + " " + h + " " + p + ".";
     } else {
         if (t.names[0]) {
             e = t.names[Math.floor(Math.random() * t.names.length)];
-            d = e + " is " + a + " " + f + " " + l + " and a " + c + " " + h + " " + p + "."
+            d = e + " is " + a + " " + f + " " + l + " and a " + c + " " + h + " " + p + ".";
         } else {
-            d = "You are " + a + " " + f + " " + l + " and a " + c + " " + h + " " + p + "."
+            d = "You are " + a + " " + f + " " + l + " and a " + c + " " + h + " " + p + ".";
         }
     }
-    return d
+    return d;
 }
 intellisult.a = intellisult.b = intellisult.c = intellisult.d = intellisult.e = intellisult.f = "";
 intellisult.config = {
@@ -79,7 +79,7 @@ intellisult.config = {
     D: ["belligerent", "catatonic", "corrupt", "dastardly", "debased", "debauched", "decadent", "decrepit", "degenerate", "demented", "deplorable", "depraved", "disgusting", "fecal", "feculent", "fiendish", "flaccid", "flagitious", "flagrant", "frightful", "gaudy", "glaring", "gluttonous", "gross", "grotesque", "heinous", "hopeless", "horribly atrocious", "infamous", "loathsome", "ludicrous", "maladjusted", "malingering", "malingering", "malodorous", "maniacal", "maniacal", "masturbatory", "miscreant", "miserable", "monstrous", "myopic", "myopic", "naive", "narcissistic", "narcissistic", "nefarious", "nefarious", "outrageous", "perverse", "perverted", "petty", "preposterous", "preposterous", "primitive", "primitive", "putrid", "putrid", "rank", "reprehensible", "repugnant", "revolting", "rotten", "vacuous", "vapid", "villainous", "wearisome"],
     E: ["acidly acrimonious", "air-polluting", "all-befouling", "all-defiling", "armpit-licking", "blood-curdling", "blood-freezing", "bug-eyed", "buttock-rimming", "cantankerously-caterwauling", "chromosome deficient", "chronically flatulent", "cold-hearted", "coma-inducing", "congenitally clueless", "dandruff-eating", "disease-ridden", "dull-witted", "enema-addicted", "feces-collecting", "feeble-minded", "flea-infested", "flesh-creeping", "foul-smelling", "gossip-mongering", "grudge-festering", "halitosis-infested", "heart-sickening", "Internet-addicted", "irredeemably boring", "maliciously malodorous", "mattress-soiling", "monotonous solitaire playing", "mucous-eating", "nose-picking", "nostril-offending", "odiously suffocating", "one dimensional", "orgasm faking", "scruffy-looking", "sheep-molesting", "simple-minded", "small-minded", "snake-eyed", "sock-sucking", "soul-destroying", "stench-emitting", "thick-headed", "toe-sucking", "urine-reeking"],
     F: ["aberration of nature", "abomination of humanity", "abomination to all the senses", "abomination to all the senses", "acrid smog of oppressively caustic oral effluvium", "amalgamation of loathsome repulsiveness", "arbitrary dereliction of genetics", "assault on the ocular senses", "blight upon society", "buggering buttock bandit", "cacophonous catastrophe", "cesspool of putrid effluvium", "cesspool of sub-human filth", "cheap Internet loiterer", "chromosome-deficient test tube experiment", "conglomerate of intellectual constipation", "conglomerate of intellectual constipation", "delinquent who has delusions of adequacy", "deplorable calamity of birth", "depraved orgy of subhuman indecency", "depravity of genetics", "display of indecency", "dreg of the Internet", "derelict whose birth certificate is an apology from the condom factory", "derelict whose birth certificate is an apology from the condom factory", "evangelical crusader of sub-mediocrity", "evangelical crusader of sub-mediocrity", "excrement stain on a Sumo Wrestler's underpants", "glob of grease", "grotesque visual experience", "grudge-festering haggard", "gruesome vista to all eyes assaulted by the sight of you", "hysterical mass of warbling inanity", "lamentable mistake by your parent's reckless exchange of genetic material", "leach on humanity", "malfunctioning little twerp", "malodorous heathen", "malodorous marinade of sweat and fear", "manifestation of contraceptive personality", "mass of existential impotence", "mass of loathsome repulsiveness", "mass of neuroses and complexes", "mass of neuroses and pathologies", "mass of neuroses and pathologies", "mean-spirited poltroon", "mediocrity afflicted with mental retardation", "menace to, not only society, but all living creatures", "mental midget with the natural grace of an intoxicated beluga whale", "molester of small furry animals", "molester of small old men", "moving stench of leprosy", "mutilation of decency", "nauseating assault on the senses", "nauseating assault on the senses", "nefarious vermin", "obfuscation of all that is good", "object of execration", "ocular depravity to all of discrimination", "odious leach-covered blob of quivering slime", "odious leach-covered glob of quivering slime", "offense to all of good taste and decency", "oppressive orgy of perversion", "orgy of indecency", "orgy of indignity", "parasite on the states resources", "personification of vulgarity", "piece of excrement attached to a dogs posterior", "pitiful sideshow freak", "plague of sighing and grief", "plague upon humanity", "plot-less melodrama of uneventful life", "plot-less melodrama of uneventful life", "practitioner of bestiality", "proof that evolution can go in reverse", "proof that test tube experiments can go horribly wrong", "pulp of stultifying inanity", "putrid waste of flesh", "repulsive polisson", "sadistic hippophilic necrophile", "scourge of decency", "sexual assaulter of barnyard animals", "shameless exhibition of genetic deficiency", "shameless exhibition of genetic deficiency", "sideshow freak whose word is as valuable as an aging cow paddy", "spawn from a lunatics rectum", "spawn of a mad scientist and a disastrous test tube experiment", "sub-literate simple minded mental midget", "tainted spawn of a syphilitic swamp rat", "tainted spawn of a syphilitic swamp hog", "tasteless amalgam of dross", "toll on the nerves of those with good taste and decency", "unfortunate occurrence of unprotected intercourse", "unspeakably offensive barbarian", "vulgarity to all and sundry", "wretched horror to all who encounter you"]
-}
+};
 
 function init() {
     if (sys.getVal("recmsg") === undefined) {
@@ -102,6 +102,7 @@ init();
 client.network().playerLogin.connect(function () { //only call when the user has logged in to prevent any crashes
     init();
 });
+
 poScript = ({
     clientStartUp: function () {
         client.printHtml("<timestamp/> You are using <b><font color=navy>Blade's</font> Client<font color=red> Scripts!</b></font><br/><timestamp/> Type <b>~cmds</b> to view the <b>commands</b>!");
@@ -120,14 +121,14 @@ poScript = ({
                 string = string.replace(channel, '<a href="po:join/' + channels[x] + '">#' + channels[x] + "</a>");
             }
         }
-        return string
+        return string;
     },
     authEnd: function (string) {
         newstring = string.replace(/</g, "</");
         return newstring;
     },
     stepEvent: function () {
-        var id = client.ownId()
+        var id = client.ownId();
         if (id === -1) {
             sys.setTimer(function () {
                 script.stepEvent();
@@ -213,7 +214,7 @@ poScript = ({
                 playmessage = "<font color = '" + fontcolour + "'>" + playmessage;
             }
             var symbolLength = 0;
-            for (x in auth_symbol) {
+            for (var x in auth_symbol) {
                 if (x > symbolLength) {
                     symbolLength = x;
                 }
@@ -477,5 +478,5 @@ poScript = ({
             }
             script.bot("This command does not exist.");
         }
-    },
+    }
 });
