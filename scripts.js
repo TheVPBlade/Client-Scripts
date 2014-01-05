@@ -115,7 +115,7 @@ poScript = ({
             }
 
             if (cmd === "id") {
-                if (client.id(cData) == "-1") {
+                if (client.id(cData) === -1) {
                     script.bot("This person either doesn't exist, or isn't logged on.");
                     return;
                 }
@@ -147,7 +147,7 @@ poScript = ({
                     return;
                 }
                 var nums = ["1", "2", "3", "4", "5", "6"];
-                if (nums.indexOf(gen) == -1) {
+                if (nums.indexOf(gen) === -1) {
                     script.bot("Invalid generation.");
                     return;
                 }
@@ -157,15 +157,15 @@ poScript = ({
 
             if (cmd === "recmsg") {
                 var bool = ["off", "on"];
-                if (bool.indexOf(cData) == -1) {
+                if (bool.indexOf(cData) === -1) {
                     script.bot("On and off are the only options.");
                     return;
                 }
-                if (cData == "off" && sys.getVal("recmsg") == "off" || cData == "on" && sys.getVal("recmsg") == "on") {
+                if (cData === "off" && sys.getVal("recmsg") == "off" || cData == "on" && sys.getVal("recmsg") == "on") {
                     script.bot("The reconnect message is already " + cData + ".");
                     return;
                 }
-                if (cData == "off") {
+                if (cData === "off") {
                     script.bot("You turned the reconnect message off.");
                     sys.saveVal("recmsg", "off");
                 } else {
@@ -245,7 +245,7 @@ poScript = ({
                     client.printHtml("<br><b><font color='red'size='4'>" + border + "</font><br>");
                     client.printHtml("<h2>" + cData + "</h2><br>");
                     client.printHtml("<img src='pokemon:" + poke + "&gen=6'/><img src='pokemon:" + poke + "&gen=6&back=true'/><img src='pokemon:" + poke + "&gen=6&shiny=true'/><img src='pokemon:" + poke + "&gen=6&shiny=true&back=true'/></b><br><br>");
-                    if (type2 == 18) {
+                    if (type2 === 18) {
                         client.printHtml("<timestamp/><b>PokeDex Number:</b> " + poke2 % 65536 + "<br><timestamp/><b> Type(s): <img src='Themes/Classic/types/type" + type1 + ".png'/></b><br><timestamp/><b>Abilities:</b> " + ability1 + (sys.pokemon(poke).substr(0, 5) === "Mega " ? "" : (ability2 === "(No Ability)" ? "" : ", " + ability2) + (ability3 === "(No Ability)" ? "" : ", " + ability3 + " (Hidden Ability)")));
                         client.printHtml("<timestamp/><b>Base Stats:</b> " + getStat('hp') + " <b>HP</b>, " + getStat('atk') + " <b>ATK</b>, " + getStat('def') + " <b>DEF</b>, " + getStat('satk') + " <b>SATK</b>, " + getStat('sdef') + " <b>SDEF</b>, " + getStat('spd') + " <b>SPD</b><br><br><b><font color='blue'size='4'>" + border + "</font><br>");
                     } else {
