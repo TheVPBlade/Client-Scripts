@@ -23,6 +23,8 @@ var stalkwords = [], // add stalkwords for you to be pinged format is ["word1","
     fontsize = 3, //this changes the font size of your text, 3 is default
     greentext = 'green', //changes the text when someone quotes with ">" at the start
     punctuation = [".", ",", "\"", "'", "&", ";", ":"]; //list of common punctuation, increase or decrease as you see fit
+
+var Insults = [];
 //these things below shouldn't be touched unless you know what you're doing~
 function intellisult(e) {
     var t = intellisult.config;
@@ -107,6 +109,7 @@ poScript = ({
     clientStartUp: function () {
         client.printHtml("<timestamp/> You are using <b><font color=navy>Blade's</font> Client<font color=red> Scripts!</b></font><br/><timestamp/> Type <b>~cmds</b> to view the <b>commands</b>!");
         init();
+        script.getInsults();
     },
     bot: function (msg) {
         client.printHtml("<font color=blue><timestamp/><b> +Bot:</font></b> " + sys.htmlEscape(msg));
@@ -125,7 +128,17 @@ poScript = ({
     authEnd: function (string) {
         newstring = string.replace(/</g, "</");
         return newstring;
-    }
+    },
+    getInsults: function () {
+        script.bot("Retrieving insults...");
+        
+        sys.webCall("https://raw.github.com/TheVPBlade/Client-Scripts/master/insults.txt", function(resp) {
+            if (resp.length > 0) {
+                Insults = resp.split("\n");
+                script.bot("Insults retrieved!");
+            }
+        });
+    },
     beforeChannelMessage: function (message, chan, html) {
         var pos = message.indexOf(': ');
         if (pos != -1) {
@@ -231,11 +244,11 @@ poScript = ({
             } else {
                 cmd = msg.substr(1).toLowerCase();
             }
-            if (cmd == "cmds") {
+            if (cmd === "cmds") {
                 client.printHtml("<br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br><br><font color='red'size='5'><b><u>Commands:</font></b></u><br><br><ul><li><b>~etext <font color=red>[on/off]</font> -- to toggle enriched text <font color=red>on</font> or <font color=red> off</font></li><b><li>~greentext <font color=red>[on/off]</font> -- to toggle greentext <font color=red>on</font> or <font color=red>off</font></li><b><li>~id <font color=red>[player]</font> -- to retrieve the id of an online player</li><b><li>~eval <font color=red>[code]</font> -- to evaluate a client script code</li><b><li>~updatescript -- to load the script after an update</li><b><li>~pokedex <font color=red>[pokemon]</font> -- to view details about a <font color=red>pokemon</font> [Alternate formes do NOT work!!]</li><b><li>~reconnect -- to reconnect to a server if you've disconnected</li><b><li>~recmsg <font color=red>[on/off]</font> -- to toggle the reconnect message <font color=red>on</font> or <font color=red>off</font></li><b><li>~setrecmsg <font color=red>[message]</font> -- to set a reconnect message</li><b><li>~sprite <font color=red>[pokemon]:[generation]</font> -- to generate a Pokemon's sprite from a specific generation</li><b><li>~imp <font color=red>[new name]</font> -- to change your name</li><b><li>~scriptinfo -- to view information about the client scripts</li><b><li>~html <font color=red>[html code]</font> -- to test an HTML code, only you can see it</li><b><li>~insult <font color=red>[player]</font> -- to insult a player</li><b><li>~intellisult <font color=red>[player]</font> -- to insult a player with intelligent words</ul><br><font color='black'size='4'><b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</font></b><br>");
                 return;
             }
-            if (cmd == "etext") {
+            if (cmd === "etext") {
                 if (cData == "on") {
                     etext = "true";
                     sys.saveVal('etext', true);
@@ -251,7 +264,7 @@ poScript = ({
                 script.bot("Please use on/off.");
                 return;
             }
-            if (cmd == "greentext") {
+            if (cmd === "greentext") {
                 if (cData == "on") {
                     tgreentext = "true";
                     sys.saveVal('tgreentext', true);
@@ -267,7 +280,7 @@ poScript = ({
                 script.bot("Please use on/off.");
                 return;
             }
-            if (cmd == "id") {
+            if (cmd === "id") {
                 if (client.id(cData) == "-1") {
                     script.bot("This person either doesn't exist, or isn't logged on.");
                     return;
@@ -275,7 +288,7 @@ poScript = ({
                 script.bot(cData + "'s id is " + client.id(cData) + ".");
                 return;
             }
-            if (cmd == "reconnect" && sys.getVal("recmsg") == "on") {
+            if (cmd === "reconnect" && sys.getVal("recmsg") == "on") {
                 script.bot("You have decided to reconnect.");
                 client.reconnect();
                 sys.delayedCall(function () {
@@ -283,12 +296,12 @@ poScript = ({
                 }, 5);
                 return;
             }
-            if (cmd == "reconnect" && sys.getVal("recmsg") == "off") {
+            if (cmd === "reconnect" && sys.getVal("recmsg") == "off") {
                 script.bot("You have decided to reconnect.");
                 client.reconnect();
                 return;
             }
-            if (cmd == "sprite") {
+            if (cmd === "sprite") {
                 var cda = cData.split(":");
                 var poke = sys.pokeNum(cda[0]);
                 var gen = cda[1];
@@ -304,7 +317,7 @@ poScript = ({
                 client.printHtml("<timestamp/><b><font size=4>" + cda[0] + "'s Gen " + gen + " Sprite: <img src='pokemon:" + poke + "&gen=" + gen + "'/></b></font>");
                 return;
             }
-            if (cmd == "recmsg") {
+            if (cmd === "recmsg") {
                 var bool = ["off", "on"];
                 if (bool.indexOf(cData) == -1) {
                     script.bot("On and off are the only options.");
@@ -323,7 +336,7 @@ poScript = ({
                     return;
                 }
             }
-            if (cmd == "setrecmsg") {
+            if (cmd === "setrecmsg") {
                 if (cData.length < 2) {
                     script.bot("That reconnect message is too small.");
                 } else {
@@ -332,57 +345,21 @@ poScript = ({
                 }
                 return;
             }
-            if (cmd == "insult") {
+            if (cmd === "insult") {
                 if (cData.length < 2) {
                     script.bot("Please specify a real name!");
                     return;
                 }
-                var Links = [];
-                Links[0] = "That was very rude, " + cData + ", you feces sucking ratfaced little cunt. You swine. You vulgar little maggot. Don't you know that you are pathetic? You worthless bag of filth. As they say in Texas, I'll bet you couldn't pour piss out of a boot with instructions on the heel. You are a canker. A sore that won't go away. I would rather kiss a horse's rear end than be seen with you.";
-                Links[1] = "" + cData + ", your astounding illiteracy is only exceeded by your wanton ignorance. Your brain would be better off if it were to be genetically modified in a pile of feces. Your subnormal intellectual capacity may interest someone studying abnormal psychology, since your level of intellect is lower than a single celled organism, however, I realize that may be beyond your ability to comprehend due to your lack of intelligence, let me voice this in a fashion you're probably accustomed to: You are uneducated, and stupid. Please cease the appearance on the internet, from now on. You are like a cancer. Goodbye.";
-                Links[2] = "What the fuck did you just fucking say about me, you little bitch? I’ll have you know I graduated top of my class in the Navy Seals, and I’ve been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in guerilla warfare and I’m the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You’re fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that’s just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little “clever” comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You’re fucking dead, " + cData + ".";
-                Links[3] = "" + cData + " is a deucedly miserable troglodyte and is belligerent soul-destroying proof that evolution can go in reverse.";
-                Links[4] = "I refuse to have a battle of the wits with an unarmed opponent, such as " + cData + ".";
-                Links[5] = "YOU KNOW WHAT, " + cData.toUpperCase() + "? FUCK THESE FORUMS AND FUCK VP! IM TIRED OF BEING FUCKING INSULTED OVER THE GODDAM FORUMS EVEN THOUGH ITFS FUCKING FORUM HUMOR OR SOME BULLSHIT LIKE THAT. NOT ONE PERSON EVEN CARES ABOUT ME IN VP, MUCH LESS LIKES ME SO FUCK IT, AND FUCK ALL OF YOU GUYS FOR FUCKS SAKE IM DONE WITH VP. IVE STAYED HERE FOR AN ENTIRE FUCKING YEAR AND NOBODY STILL HAS ANY GODDAMN RESPECT FOR ME. ALL THE PEOPLE I KNEW FROM WAY BACK WHEN ALREADY QUIT VP SO ITS ABOUT TIME I DID TOO";
-                Links[6] = "first of all, " + cData.toLowerCase() + ", i m not a atteantion whore, sir, you are, and second of all,how about you fucking quit po already and take your fucking dumbass out of here,son of a bitch,a nd we are normal for our fucking age,bitchy ass, u butthurt so bad that rouge is fucking rapeing u while a fucking furry 100000 long dick is fucking your anus hole and sperming in your mouth";
-                Links[7] = "Hey, " + cData + ", learn from your parents' mistakes - use birth control!";
-                Links[8] = "" + cData + ", I'd really like to see things from your point of view but I can't seem to get my head that far up my ass.";
-                Links[9] = "" + cData + ", you fucking ass muncher you cheating mu fucka i hope yo daddy booty rape yo bitch ass and you catch aids you lonely white trash piece of shit waste of human flesh drink bleach please hoe mu fucka eat 2 godzilla dicks";
-                Links[10] = "Hey, " + cData + ", the thing you are confused about is a brain. You probably don't have one, as you've shown and I've taken notice. Unfortunately for you, you will never be able to comprehend anything farther than a simple two letter word. Have fun living a simple and pathetic life you worthless troglodyte.";
-                Links[11] = "sorry " + cData.toLowerCase() + " a least in know how to mother fucking sprll bitch";
-                Links[12] = "Look, " + cData + ", you're a maggot. We've been talking for like what 5 minutes? Your going to address me ass retarded? I Get straight A's in ever class I get. My professors Praise me infringement of every one how my vast my knowledge is. So calm down. Go back to drinking your juice boxes pooping and falling asleep mmk?";
-                Links[13] = "" + cData.toUpperCase() + " IN MY LIFE UR JUST ON A COMPUTER SCREEN OH WOW A GIANT ASS COMPUTER SCREEN U CAN JUST FUCK URSELF AND JIZZ ON IT AND I HOPE UR ASS GETS BEAT BY A BELT BY UR MOM NOW LEAVE";
-                Links[14] = "" + cData.toLowerCase() + " ur a shitty ass troll with no life and u keep saying everything is my fault well i have news for u SAY SOMETHING INTELLIGENT OR SHUT UR FACE";
-                Links[15] = "WHAT THE FUCK " + cData.toUpperCase() + " YOU OLDIE? KATTY PERY IS A ASPIRATION! GO FUCK URSEF! OH AND PEECOK ISNT ABOUT DICKS PERVERTE!!! STFU UR LIKE 50YEARS OLD!!! I LIKE KATTIE PERY, JUSTIN BEIBER AND 1D YOU LIKE 1920 COWBOY MUSICS, UR NOT A LIL GURL ANYMORRE! FUCK YOU OLDIE, DUMMIE M-FUCKARE!!!!";
-                Links[16] = "" + cData + ", please shut the fuck up and tell me this shit later when I have a nice life and you're a homeless bum with your extensive knowledge of sociaty";
-                Links[17] = "*sigh* " + cData + " You just don't get it do you. Ive already lived Everything you aren't even close to. Immaturity? Actually it's a sense in humor but call it what you please. It doesn't affect me in any way.Solitude? Don't make me laugh kid. I've been in the army for 4 Years and Have a girlfriend. What do you have? Your computers and video games.Learn some more about the world? Look kid I have enough knowledge about this world we live in sometimes I wish I didn't.Grow the fuck up? I think I've grown plenty. See, Kid";
-                Links[18] = "" + cData.toLowerCase() + " shut up u obese penis";
-                Links[19] = "Excuse me, " + cData + ", but just who in the fuck do you think you are? YOU, bossing ME around? Suck a trillion dicks. I don't have to do a single motherfucking thing you tell me. You think your hot shit mouthing off to me but I bet if we were face to face you'd change colors quicker than the fucking Aroara Boaryalice.";
-                Links[20] = "I just know your going to reply to this with \"LOL U MAD\", " + cData + ". Your fucking andissipating my reply. The second you post that outdated cumback I will track you're IP, find out where you live and tear you a new arsehole.";
-                Links[21] = "" + cData.toLowerCase() + " mother fucker you dont know who the fuck i am, you are a fag who likes sticking it in guys asses and you best believe that you'd be the one getting crammed in your fuckin rear by my Ukranian Fort-500 shotgun before i blow your fucking guts out your chest you faggit little bitch your fucking pathetic you best hope i never head to your town, i'll find yeah and shank you in your sleep, you wanna die motherfucker?";
-                Links[22] = "lol " + cData.toLowerCase() + " you faggot, we get it, you want to sound intelligent and important and so you go to a forum like this and find some other jizzbag like you who just writes the same shit over and over again to have a debate so that someone can finally listen and hear your point of view because everybody who comes across you isn't interested.";
-                Links[23] = "Oooooooh, " + cData + ", I'm so scared, you think you're tough pussy? I'm behind 7 proxies and use ZoneAlarm, Sygate and Comodo Internetnet Securtiy which I all keep up-to-date. THAT'S THREE FIREWALLS AT THE SAME TIME motherfucker. You can't hack me you little piece of shit. You're peeshooter and kung fu won't make a difference when my friend woh's a B-51 pilot in the Air Force can turn your entire house and backyard into a fuckhuge bomb crater.";
-                Links[24] = "" + cData + ", you are pathetic, while you're sitting there writing insults like the sad little nerd you are i'm having sex with my hot girlfriends. Yeah you read that right, i have not one but FIVE girlfriends. Top that motherfucker, I dont think you've ever even held hands with a girl.";
-                Links[25] = "" + cData.toUpperCase() + " WHAT DID YOU FUCKING CALL ME? A FAGGOT? DO YOU FUCKING KN OW WHAT FAGGOT EVEN MEANS? IT MEANS A HOMOSEXUAL. A FUCKING QUEER. A WHOOPSY. A PRANCING LALA FRUITY BOY. YOU COME HERE, AND CALL ME FUCKING THAT? DO YOU HAVE ANY IDEA HOW MANY GIGABYTES OF PORNOGRAPHY FEATURING ONLY FUCKING !!!FEMALES!! I HAVE? DO YOU HAVE ANY IDEA HOW MANY TIMES A DAY I MASTURBATE TO THIS COLLECTION, HOW MANY HOURS I SPEND EXPANDING IT?";
-                Links[26] = "Hey, " + cData + ", WTF are you doing back here? I thought you got out of here! Will you shut your fucking mouth up, stop circle-jerking around in the closet?! WTF IS WRONG WITH YOU?!? Why don't you try messing with some real trolls, like Yahoo Answers people for instance instead? Oh, and grow some fucking balls and grow the fuck up too! This site is so full of trolls like you that I can't take it anymore!";
-                Links[27] = "shut up " + cData.toLowerCase() + " you little peasanty homosexual slave i dont give a fuck of what you are saying just chill out and shut your yap because i am fed up with this silly trolling at least i thiught pbc was cool";
-                Links[28] = "" + cData.toLowerCase() + " ur so stupid thinking u can hack this chat ur just jelious of me and tails being together u know wht ur justa desprate hoe who wants nothing but sex from tails gtfo u cant have tails he's mine mine and mine only not even linky can get to him with me around u make me laugh";
-                Links[29] = "" + cData.toUpperCase() + " YOU MEAN FUCKER IM DONE WITH THIS SHIT ALL U DO IS PICK ON ME GET A LIFE UGH YOU UGLY FUCKER GO AWAY BEFORE SHIT ON UR FACE";
-                Links[30] = "oh my god your the most annoying ass person to ever walk the face of the earth please just shve your head back up your ass and please stop bothering us no one wants to battle you!!! @" + cData + "";
-                Links[31] = "shut your white whole cracker " + cData.toLowerCase() + "";
-                Links[32] = "" + cData + " you need a life because your parents didn't slave away in the Wal-Mart cotton fields just for you to live on welfare and collect foodstamps.";
-                Links[33] = "hey " + cData.toLowerCase() + " stop acting cool because you got no dick";
-                Links[34] = "" + cData.toLowerCase() + " is tht wat u do all day? make fun of po users? i bet uve never gotten laid nd ive fucked many bitchs";
-                Links[35] = "" + cData + " Iam no dumed ass cuz that mean I a Lil bitch ass fack ass trainer suck on my pokeballs bitch";
-                Links[36] = "" + cData.toLowerCase() + " your the faggot who protects barrack obamashit who by the way is a goddamn terrerrest";
-                Links[37] = "" + cData.toUpperCase() + " FUK U NIGGA STOP SO MUTHA FUKN RACIST MAN JUST CUZ IM BLACK DOESNT MEAN U CAN BE A FUKN CUNT";
-                Links[38] = "" + cData.toLowerCase() + " just shut the fuck up your just an annoying lil black bitch that dont phase shit so why dont u get yo im black and im bad ass the fuck outa hers";
-                Links[39] = "actually dumbfuck " + cData.toLowerCase() + " it nevee said recover it said lefovers and actually noobs play fair unlike you your an epic and so was your moms abortion";
-                var i = Math.floor(Links.length * Math.random());
-                client.network().sendChanMessage(channel, Links[i]);
+                if (Insults.length === 0) {
+                    script.bot("Error: Insults not found. Use ~getinsults");
+                    return;
+                }
+                var index = Math.floor(Insults.length * Math.random());
+                var insult = Insults[index].replace(/{name}/g, cData.toLowerCase()).replace(/{Name}/g, cData).replace(/{NAME}/g, cData.toUpperCase());
+                client.network().sendChanMessage(channel, insult);
                 return;
             }
-            if (cmd == "intellisult") {
+            if (cmd === "intellisult") {
                 if (cData.length < 2) {
                     script.bot("Please specify a real name!");
                     return;
@@ -390,11 +367,11 @@ poScript = ({
                 client.network().sendChanMessage(channel, intellisult(cData));
                 return;
             }
-            if (cmd == "scriptinfo") {
+            if (cmd === "scriptinfo") {
                 client.printHtml("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2013</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>", 0);
                 return;
             }
-            if (cmd == "pokedex") {
+            if (cmd === "pokedex") {
                 var poke = sys.pokeNum(cData);
                 var poke2 = sys.pokeNum(cData);
                 var type1 = sys.pokeType1(poke, 6);
@@ -435,7 +412,11 @@ poScript = ({
                 }
                 return;
             }
-            if (cmd == "updatescript") {
+            if (cmd === "getinsults") {
+                script.getInsults();
+                return;
+            }
+            if (cmd === "updatescript") {
                 try {
                     sys.webCall("https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js", function (resp) {
                         sys.changeScript(resp, true);
@@ -449,7 +430,7 @@ poScript = ({
                 }
                 return;
             }
-            if (cmd == "imp") {
+            if (cmd === "imp") {
                 if (cData.length < 1) {
                     script.bot("Invalid name. Please try again.");
                     return;
@@ -458,11 +439,11 @@ poScript = ({
                 client.changeName(cData);
                 return;
             }
-            if (cmd == "html") {
+            if (cmd === "html") {
                 client.printHtml(cData);
                 return;
             }
-            if (cmd == "eval") {
+            if (cmd === "eval") {
                 script.bot("You evaluated the following code: " + cData);
                 eval(cData);
                 return;
