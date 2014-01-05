@@ -24,7 +24,9 @@ var stalkwords = [], // add stalkwords for you to be pinged format is ["word1","
     greentext = 'green', //changes the text when someone quotes with ">" at the start
     punctuation = [".", ",", "\"", "'", "&", ";", ":"]; //list of common punctuation, increase or decrease as you see fit
 
-var Insults = [];
+if (typeof(Insults) !== "object") {
+    var Insults = [];
+}
 //these things below shouldn't be touched unless you know what you're doing~
 function intellisult(e) {
     var t = intellisult.config;
@@ -111,8 +113,11 @@ poScript = ({
         init();
         script.getInsults();
     },
-    bot: function (msg) {
-        client.printHtml("<font color=blue><timestamp/><b> +Bot:</font></b> " + sys.htmlEscape(msg));
+    bot: function (msg, chan) {
+        if (!chan) {
+            chan = client.currentChannel();
+        }
+        client.printChannelMessage("<font color=blue><timestamp/><b> +Bot:</font></b> " + sys.htmlEscape(msg), chan, true);
         return;
     },
     channelLinks: function (string) {
@@ -445,7 +450,14 @@ poScript = ({
             }
             if (cmd === "eval") {
                 script.bot("You evaluated the following code: " + cData);
-                eval(cData);
+                var res;
+                try {
+                    res = eval(cData);
+                } catch(err) {
+                    script.bot("ERROR: " + err);
+                    return;
+                }
+                script.bot("Result: " + res);
                 return;
             }
             script.bot("This command does not exist.");
