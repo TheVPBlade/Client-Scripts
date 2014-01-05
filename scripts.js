@@ -75,7 +75,7 @@ poScript = ({
     clientStartUp: function () {
         client.printHtml("<timestamp/> You are using <b><font color=navy>Blade's</font> Client<font color=red> Scripts!</b></font><br/><timestamp/> Type <b>~cmds</b> to view the <b>commands</b>!");
         script.init();
-        script.getInsults();
+        script.getInsults(false);
     },
 
     bot: function (msg, chan) {
@@ -86,10 +86,18 @@ poScript = ({
         return;
     },
 
-    getInsults: function () {
+    getInsults: function (showMessages) {
+        if (showMessages) {
+            script.bot("Retrieving insults...");
+        }
+        
         sys.webCall("https://raw.github.com/TheVPBlade/Client-Scripts/master/insults.txt", function (resp) {
             if (resp.length >= 1) {
                 Insults = resp.split("\n");
+                
+                if (showMessages) {
+                    script.bot("Insults retrieved!");
+                }
             } else {
                 script.bot("Error retrieving insults!");
             }
@@ -257,7 +265,7 @@ poScript = ({
             }
 
             if (cmd === "getinsults") {
-                script.getInsults();
+                script.getInsults(true);
                 return;
             }
 
@@ -287,7 +295,7 @@ poScript = ({
             }
 
             if (cmd === "html") {
-                client.printHtml(cData);
+                client.printChannelMessage(cData, channel, true);
                 return;
             }
 
