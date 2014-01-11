@@ -93,7 +93,10 @@ poScript = ({
         
         sys.webCall("https://raw.github.com/TheVPBlade/Client-Scripts/master/insults.txt", function (resp) {
             if (resp.length >= 1) {
-                Insults = resp.split("\n");
+                Insults = resp.split("\n").filter(function(insult) {
+                    //Strip empty insults
+                    return !!insult;
+                });
                 
                 if (showMessages) {
                     script.bot("Insults retrieved!");
