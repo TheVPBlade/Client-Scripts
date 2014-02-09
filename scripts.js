@@ -197,7 +197,7 @@ poScript = ({
             }
 
             if (cmd === "insult") {
-                if (cData.length < 1) {
+                if (cData === undefined) {
                     script.bot("Please specify a real name!");
                     return;
                 }
@@ -212,7 +212,7 @@ poScript = ({
             }
 
             if (cmd === "intellisult") {
-                if (cData.length < 1) {
+                if (cData === undefined) {
                     script.bot("Please specify a real name!");
                     return;
                 }
@@ -288,7 +288,7 @@ poScript = ({
             }
 
             if (cmd === "imp") {
-                if (cData.length < 1) {
+                if (cData === undefined) {
                     script.bot("Invalid name. Please try again.");
                     return;
                 }
@@ -298,11 +298,19 @@ poScript = ({
             }
 
             if (cmd === "html") {
+                if (cData === undefined) {
+                    script.bot("Sorry, invalid message. Please try again.");
+                    return;
+                }
                 client.printChannelMessage(cData, channel, true);
                 return;
             }
 
             if (cmd === "eval") {
+                if (cData === undefined) {
+                    script.bot("Please provide a valid code to be evaluated.");
+                    return;
+                }
                 script.bot("You evaluated the following code: " + cData);
                 var res;
                 try {
