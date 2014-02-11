@@ -137,9 +137,9 @@ poScript = ({
             if (cmd === "reconnect" && sys.getVal("recmsg") == "on") {
                 script.bot("You have decided to reconnect.");
                 client.reconnect();
-                sys.delayedCall(function () {
+                sys.setTimer(function () {
                     client.network().sendChanMessage(0, sys.getVal("recmsgset"));
-                }, 5);
+                }, 50, false);
                 return;
             }
 
