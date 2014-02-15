@@ -1,4 +1,4 @@
-// [VP]Blade's Pokemon Online Client Scripts //
+// [VP]Blade's Pokémon Online Client Scripts //
 // Many of the commands were made by [VP]Blade //
 if (typeof (Insults) !== "object") {
     var Insults = [];
@@ -121,7 +121,7 @@ poScript = ({
             }
 
             if (cmd === "cmds") {
-                client.printChannelMessage("<br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br><h2>Commands</h2><i>Type one of the following into the channel's chat to use it:</i><ul><li><b>~id <font color=red>[player]</font></b> To retrieve the id of an online player.</li><li><b>~eval <font color=red>[code]</font></b> To evaluate a client script code.</li><li><b>~updatescript</b> To load the script after an update.</li><li><b>~pokedex <font color=red>[pokemon]</font></b> To view details about a Pokemon.</li><li><b>~reconnect</b> To reconnect to a server if you've disconnected.</li><li><b>~recmsg <font color=red>[on/off]</font></b> To toggle the reconnect message on or off.</li><li><b>~setrecmsg <font color=red>[message]</font></b> To set a reconnect message.</li><li><b>~sprite <font color=red>[pokemon]</b></font>:<font color=red><b>[generation]</font></b> To generate a Pokemon's sprite from a specific generation.</li><li><b>~imp <font color=red>[new name]</font></b> To change your name.</li><li><b>~scriptinfo</b> To view information about the client scripts.</li><li><b>~html <font color=red>[html code]</font></b> To test an HTML code, only you can see it.</li><li><b>~getinsults</b> To webcall the list of insults.</li><li><b>~insult <font color=red>[player]</font></b> To insult a player.</li><li><b>~intellisult <font color=red>[player]</font></b> To insult a player with intelligent words.</ul><br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br>", channel, true);
+                client.printChannelMessage("<br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br><h2>Commands</h2><i>Type one of the following into the channel's chat to use it:</i><ul><li><b>~id <font color=red>[player]</font></b> To retrieve the id of an online player.</li><li><b>~eval <font color=red>[code]</font></b> To evaluate a client script code.</li><li><b>~updatescript</b> To load the script after an update.</li><li><b>~pokedex <font color=red>[pokemon]</font></b> To view details about a Pokémon.</li><li><b>~reconnect</b> To reconnect to a server if you've disconnected.</li><li><b>~recmsg <font color=red>[on/off]</font></b> To toggle the reconnect message on or off.</li><li><b>~setrecmsg <font color=red>[message]</font></b> To set a reconnect message.</li><li><b>~sprite <font color=red>[pokemon]</b></font>:<font color=red><b>[generation]</font></b> To generate a Pokémon's sprite from a specific generation.</li><li><b>~imp <font color=red>[new name]</font></b> To change your name.</li><li><b>~scriptinfo</b> To view information about the client scripts.</li><li><b>~html <font color=red>[html code]</font></b> To test an HTML code, only you can see it.</li><li><b>~getinsults</b> To webcall the list of insults.</li><li><b>~insult <font color=red>[player]</font></b> To insult a player.</li><li><b>~intellisult <font color=red>[player]</font></b> To insult a player with intelligent words.</ul><br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br>", channel, true);
                 return;
             }
 
@@ -153,8 +153,8 @@ poScript = ({
                 var cda = cData.split(":");
                 var poke = sys.pokeNum(cda[0]);
                 var gen = cda[1];
-                if (cda[0].length < 1 || poke === undefined) {
-                    script.bot("'" + cda[0] + "' is not a Pokemon.");
+                if (poke === undefined) {
+                    script.bot("Please submit a valid Pokémon.");
                     return;
                 }
                 var nums = ["1", "2", "3", "4", "5", "6"];
@@ -187,8 +187,8 @@ poScript = ({
             }
 
             if (cmd === "setrecmsg") {
-                if (cData.length < 2) {
-                    script.bot("That reconnect message is too small.");
+                if (cData === undefined) {
+                    script.bot("Please specify a message!");
                     return;
                 }
                 script.bot("Reconnect message set to: " + cData);
@@ -234,12 +234,8 @@ poScript = ({
                     ability2 = sys.ability(sys.pokeAbility(poke, 1)),
                     ability3 = sys.ability(sys.pokeAbility(poke, 2));
                 var border = "»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»";
-                if (!cData) {
-                    script.bot("Please specify a Pokémon!");
-                    return;
-                }
                 if (poke === undefined) {
-                    script.bot("'" + cData + "' is not a Pokemon.");
+                    script.bot("Please submit a valid Pokémon.");
                 } else {
                     var baseStats = sys.pokeBaseStats(poke2, '6');
                     var getStat = function (stat) {
