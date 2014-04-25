@@ -91,7 +91,7 @@ poScript = ({
             script.bot("Retrieving insults...");
         }
         
-        sys.webCall("https://raw.github.com/TheVPBlade/Client-Scripts/master/insults.txt", function (resp) {
+        sys.webCall("https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/insults.txt", function (resp) {
             if (resp.length >= 1) {
                 Insults = resp.split("\n").filter(function(insult) {
                     //Strip empty insults
@@ -221,7 +221,7 @@ poScript = ({
             }
 
             if (cmd === "scriptinfo") {
-                client.printChannelMessage("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2014</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>", channel, true);
+                client.printChannelMessage("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2014</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>", channel, true);
                 return;
             }
 
@@ -270,7 +270,7 @@ poScript = ({
 
             if (cmd === "updatescript") {
                 try {
-                    sys.webCall("https://raw.github.com/TheVPBlade/Client-Scripts/master/scripts.js", function (resp) {
+                    sys.webCall("https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/scripts.js", function (resp) {
                         sys.changeScript(resp, true);
                         sys.writeToFile(sys.scriptsFolder + "scripts.js", resp);
                         script.bot("You updated the scripts!");
