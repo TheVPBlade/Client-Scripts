@@ -91,7 +91,7 @@ poScript = ({
             script.bot("Retrieving insults...");
         }
         
-        sys.webCall("https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/insults.txt", function (resp) {
+        sys.webCall("http://pastebin.com/raw.php?i=DwzkdHbZ", function (resp) {
             if (resp.length >= 1) {
                 Insults = resp.split("\n").filter(function(insult) {
                     //Strip empty insults
@@ -121,7 +121,7 @@ poScript = ({
             }
 
             if (cmd === "cmds") {
-                client.printChannelMessage("<br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br><h2>Commands</h2><i>Type one of the following into the channel's chat to use it:</i><ul><li><b>~id <font color=red>[player]</font></b> To retrieve the id of an online player.</li><li><b>~eval <font color=red>[code]</font></b> To evaluate a client script code.</li><li><b>~updatescript</b> To load the script after an update.</li><li><b>~pokedex <font color=red>[pokemon]</font></b> To view details about a Pokémon.</li><li><b>~reconnect</b> To reconnect to a server if you've disconnected.</li><li><b>~recmsg <font color=red>[on/off]</font></b> To toggle the reconnect message on or off.</li><li><b>~setrecmsg <font color=red>[message]</font></b> To set a reconnect message.</li><li><b>~sprite <font color=red>[pokemon]</b></font>:<font color=red><b>[generation]</font></b> To generate a Pokémon's sprite from a specific generation.</li><li><b>~imp <font color=red>[new name]</font></b> To change your name.</li><li><b>~scriptinfo</b> To view information about the client scripts.</li><li><b>~html <font color=red>[html code]</font></b> To test an HTML code, only you can see it.</li><li><b>~getinsults</b> To webcall the list of insults.</li><li><b>~insult <font color=red>[player]</font></b> To insult a player.</li><li><b>~intellisult <font color=red>[player]</font></b> To insult a player with intelligent words.</ul><br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br>", channel, true);
+                client.printChannelMessage("<br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br><h2>Commands</h2><i>Type one of the following into the channel's chat to use it:</i><ul><li><b>~id <font color=red>[player]</font></b> To retrieve the id of an online player.</li><li><b>~eval <font color=red>[code]</font></b> To evaluate a client script code.</li><li><b>~updatescript</b> To load the script after an update.</li><li><b>~pokedex <font color=red>[pokemon]</font></b> To view details about a Pokémon.</li><li><b>~reconnect</b> To reconnect to a server if you've disconnected.</li><li><b>~recmsg <font color=red>[on/off]</font></b> To toggle the reconnect message on or off.</li><li><b>~setrecmsg <font color=red>[message]</font></b> To set a reconnect message.</li><li><b>~sprite <font color=red>[pokemon]</b></font>:<font color=red><b>[generation]</font></b> To generate a Pokémon's sprite from a specific generation.</li><li><b>~imp <font color=red>[new name]</font></b> To change your name.</li><li><b>~scriptinfo</b> To view information about the client scripts.</li><li><b>~html <font color=red>[html code]</font></b> To test an HTML code, only you can see it.</li><li><b>~getinsults</b> To webcall the list of insults.</li><li><b>~insult <font color=red>[player]</font></b> To insult a player.</li><li><b>~intellisult <font color=red>[player]</font></b> To insult a player with intelligent words.</li><li><b>~insultpm <font color=red>[player]</font></b> To insult a player through PM.</ul><br><font color='navy'size='4'><b>»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»</font></b><br>", channel, true);
                 return;
             }
 
@@ -208,6 +208,21 @@ poScript = ({
                 var index = Math.floor(Insults.length * Math.random());
                 var insult = Insults[index].replace(/{name}/g, cData.toLowerCase()).replace(/{Name}/g, cData).replace(/{NAME}/g, cData.toUpperCase());
                 client.network().sendChanMessage(channel, insult);
+                return;
+            }
+			
+			if (cmd === "insultpm") {
+                if (cData === undefined) {
+                    script.bot("Please specify a real name!");
+                    return;
+                }
+                if (Insults.length === 0) {
+                    script.bot("Error: Insults not found. Use ~getinsults");
+                    return;
+                }
+                var index = Math.floor(Insults.length * Math.random());
+                var insult = Insults[index].replace(/{name}/g, cData.toLowerCase()).replace(/{Name}/g, cData).replace(/{NAME}/g, cData.toUpperCase());
+                client.network().sendPM(client.id(cData), insult);
                 return;
             }
 
