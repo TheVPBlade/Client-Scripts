@@ -91,7 +91,7 @@ poScript = ({
             script.bot("Retrieving insults...");
         }
         
-        sys.webCall("http://pastebin.com/raw.php?i=DwzkdHbZ", function (resp) {
+        sys.webCall("http://pastebin.com/raw/DwzkdHbZ", function (resp) {
             if (resp.length >= 1) {
                 Insults = resp.split("\n").filter(function(insult) {
                     //Strip empty insults
@@ -210,8 +210,8 @@ poScript = ({
                 client.network().sendChanMessage(channel, insult);
                 return;
             }
-			
-			if (cmd === "insultpm") {
+
+            if (cmd == "insultpm") {
                 if (cData === undefined) {
                     script.bot("Please specify a real name!");
                     return;
@@ -236,7 +236,7 @@ poScript = ({
             }
 
             if (cmd === "scriptinfo") {
-                client.printChannelMessage("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2015</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>", channel, true);
+                client.printChannelMessage("<br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br><font color=black><timestamp/><b>[VP]Blade's Client Scripts™</b></font><br><font color=blue><timestamp/><b>Created by: <font color=navy>[VP]Blade</b></font><br><font color=green><timestamp/><b>Full Script: <a href='https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/scripts.js'>https://raw.githubusercontent.com/TheVPBlade/Client-Scripts/master/scripts.js</a></b></font><br><font color=navy><timestamp/><b>Special Thanks To:</font> <b><font color=black>TheUnknownOne and Ethan</b></font><br><font color=black><timestamp/><b> © [VP]Blade, 2016</b></font><br><font color=red><timestamp/><b> ««««««««««««««««««««»»»»»»»»»»»»»»»»»»»»</b></font><br>", channel, true);
                 return;
             }
 
