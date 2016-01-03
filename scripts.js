@@ -211,7 +211,7 @@ poScript = ({
                 return;
             }
 
-            if (cmd == "insultpm") {
+            if (cmd === "insultpm") {
                 if (cData === undefined) {
                     script.bot("Please specify a real name!");
                     return;
